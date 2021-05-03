@@ -1,5 +1,7 @@
 {
-  "name": "cooking-on-fire-pwa",
-  "integrations": {},
+  "name": "cooking-on-fire-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
