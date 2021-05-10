@@ -1,3 +1,39 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button [autoHide]="false" (click)="openFirst()"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Cooking on Fire</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="3">
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </ion-col>
+          <ion-col size-sm="9" class="ion-align-self-center">
+            <ion-row class="user">Ron Cook</ion-row>
+            <ion-row class="user-mail">ron.cook@example.com</ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-header>
+    <ion-content id="main">
+      <ion-list>
+        <app-menu-item iconName="calendar-outline" text="Menüplan"></app-menu-item>
+        <app-menu-item iconName="restaurant-outline" text="Rezepte"></app-menu-item>
+        <app-menu-item iconName="bulb-outline" text="Tipps"></app-menu-item>
+        <app-menu-item iconName="basket-outline" text="Einkaufsliste"></app-menu-item>
+        <app-menu-item iconName="home-outline" text="Haushalt"></app-menu-item>
+        <app-menu-item iconName="people-outline" text="Gäste"></app-menu-item>
+        <ion-item-divider></ion-item-divider>
+        <app-menu-item iconName="settings-outline" text="Einstellungen"></app-menu-item>
+        <app-menu-item iconName="library-outline" text="Rechtliches"></app-menu-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 </ion-app>

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {MenuController} from '@ionic/angular';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +6,4 @@ import {MenuController} from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor(private menu: MenuController) {}
-
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
 }
