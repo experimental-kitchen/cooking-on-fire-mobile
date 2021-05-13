@@ -8,10 +8,10 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {CofMenuItemComponent} from './comp/main-menu/cof-menu-item/cof-menu-item.component';
+import {AppMenuItemComponent} from './comp/main-menu/app-menu-item/app-menu-item.component';
 
 @NgModule({
-  declarations: [AppComponent, CofMenuItemComponent],
+  declarations: [AppComponent, AppMenuItemComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', {
     enabled: environment.production,
