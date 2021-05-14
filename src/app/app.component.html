@@ -5,7 +5,7 @@
       <ion-buttons slot="start">
         <ion-menu-button [autoHide]="false" (click)="openFirst()"></ion-menu-button>
       </ion-buttons>
-      <ion-title>Cooking on Fire</ion-title>
+      <ion-title>{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-menu side="start" menuId="first" contentId="main">
@@ -24,8 +24,8 @@
     </ion-header>
     <ion-content id="main">
       <ion-list lines="none">
-        <app-menu-item iconName="calendar-outline" text="Menüplan"></app-menu-item>
-        <app-menu-item iconName="restaurant-outline" text="Rezepte"></app-menu-item>
+        <app-menu-item iconName="calendar-outline" text="Menüplan" [navigationTargets]="['/menu-plan']"></app-menu-item>
+        <app-menu-item iconName="restaurant-outline" text="Rezepte" [navigationTargets]="['/recipes']"></app-menu-item>
         <app-menu-item iconName="bulb-outline" text="Tipps"></app-menu-item>
         <app-menu-item iconName="basket-outline" text="Einkaufsliste"></app-menu-item>
         <app-menu-item iconName="home-outline" text="Haushalt"></app-menu-item>
