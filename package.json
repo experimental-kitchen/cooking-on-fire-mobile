@@ -21,8 +21,9 @@
     "@angular/router": "~11.2.0",
     "@angular/service-worker": "~11.2.0",
     "@capacitor/core": "2.4.7",
-    "@cooking-on-fire/hapi-fhir-client": "^5.4.0-PRE10-SNAPSHOT-1",
     "@ionic/angular": "^5.5.2",
+    "@types/fhir-kit-client": "^1.1.2",
+    "fhir-kit-client": "^1.6.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

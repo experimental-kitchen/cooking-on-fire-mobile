@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
-import {HapiFhirClientModule} from '@cooking-on-fire/hapi-fhir-client';
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 
@@ -19,7 +18,7 @@ import {AppMenuItemComponent} from './comp/main-menu/app-menu-item/app-menu-item
     // Register the ServiceWorker as soon as the app is stable
     // or after 30 seconds (whichever comes first).
     registrationStrategy: 'registerWhenStable:30000'
-  }), HapiFhirClientModule],
+  })],
   providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
