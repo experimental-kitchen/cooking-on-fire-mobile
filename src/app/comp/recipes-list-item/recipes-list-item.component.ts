@@ -8,6 +8,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class RecipesListItemComponent implements OnInit {
   @Input()
   title: string;
+  @Input()
+  categories: string[];
 
   constructor() {
   }

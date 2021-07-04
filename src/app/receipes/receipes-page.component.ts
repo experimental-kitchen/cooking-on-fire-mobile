@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll} from '@ionic/angular';
 import {FhirService} from '../services/fhir/fhir.service';
-import {Bundle, PlanDefinition} from 'fhir/r4';
+import {Bundle, Coding, PlanDefinition} from 'fhir/r4';
 
 @Component({
   selector: 'app-receipes',
@@ -33,5 +33,15 @@ export class RecipesPage implements OnInit {
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  category(planDefinition: PlanDefinition): string[] {
+    return planDefinition.topic.filter(codeableConcept => this.filterCodings(codeableConcept.coding))
+      .flatMap(codeableConcept => codeableConcept.coding)
+      .map(coding => coding.display);
+  }
+
+  private filterCodings(codings: Coding[]): Coding {
+    return codings.find((coding) => coding.system === 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-recipecategory');
   }
 }
