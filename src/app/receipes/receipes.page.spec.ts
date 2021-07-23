@@ -4,7 +4,7 @@ import {IonicModule} from '@ionic/angular';
 import {RecipesPage} from './receipes-page.component';
 import {FhirService} from '../services/fhir/fhir.service';
 import Client from 'fhir-kit-client';
-import {bundleResult} from './test';
+import {bundleResult} from './recipes.page.testdata';
 import createSpy = jasmine.createSpy;
 import createSpyObj = jasmine.createSpyObj;
 
@@ -31,6 +31,6 @@ describe('ReceipePage', () => {
   });
 
   it('mock fhirService', fakeAsync(() => {
-    expect(component.planDefinitions).toHaveSize(2);
+    expect(component.planDefinitions).toHaveSize(32);
   }));
 });

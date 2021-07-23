@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {RecipesPage} from './receipes-page.component';
-import {CategoryListPipe} from '../pipe/category-list.pipe';
+import {SlashSeparatedListPipePipe} from '../pipe/slash-separated-list.pipe';
 
 const routes: Routes = [
   {
@@ -13,9 +13,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule, CategoryListPipe],
+  exports: [RouterModule, SlashSeparatedListPipePipe],
   declarations: [
-    CategoryListPipe
+    SlashSeparatedListPipePipe
   ]
 })
 export class RecipesPageRoutingModule {
