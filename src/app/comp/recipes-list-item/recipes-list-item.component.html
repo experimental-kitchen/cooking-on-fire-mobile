@@ -4,9 +4,13 @@
       <ion-col size="2">
         <ion-row *ngIf="image; else placeholder"><img src="{{image}}" alt="{{title}}"></ion-row>
       </ion-col>
-      <ion-col>
+      <ion-col size="9">
         <ion-row>{{title}}</ion-row>
         <ion-row>{{categories|slashSeparatedListPipe}}</ion-row>
+        ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-icon src="assets/icons/kalender.svg" title="saisonal"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>

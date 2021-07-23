@@ -15,12 +15,15 @@ export class RecipesPage implements OnInit {
 
   planDefinitions: PlanDefinition[] = [];
   codeSystem = CodeSystem;
+  private offset = 0;
+  private remaining: number;
+  private readonly searchPageSize = 10;
 
   constructor(private fhirService: FhirService, public topicDecoderService: TopicDecoderService) {
   }
 
   ngOnInit(): void {
-    this.performSearch(0, 10);
+    this.performSearch(this.offset, this.searchPageSize);
   }
 
   performSearch(offset: number, size: number): void {
@@ -31,12 +34,17 @@ export class RecipesPage implements OnInit {
       (bundle as Bundle).entry.forEach(entry => {
         this.planDefinitions.push(entry.resource as PlanDefinition);
       });
+      this.remaining = (bundle as Bundle).total;
     });
   }
 
   loadData(event) {
-    this.performSearch(0, 10);
+    this.performSearch(this.offset + this.searchPageSize, this.searchPageSize);
     event.target.complete();
+
+    if (this.remaining < this.searchPageSize) {
+      event.target.disabled = true;
+    }
   }
 
   image(planDefinition: PlanDefinition): string {
