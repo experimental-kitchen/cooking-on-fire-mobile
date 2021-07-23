@@ -1,6 +1,9 @@
 <ion-item>
   <ion-grid>
     <ion-row>
+      <ion-col size="2">
+        <ion-row *ngIf="image; else placeholder"><img src="{{image}}" alt="{{title}}"></ion-row>
+      </ion-col>
       <ion-col>
         <ion-row>{{title}}</ion-row>
         <ion-row>{{categories|slashSeparatedListPipe}}</ion-row>
@@ -8,3 +11,6 @@
     </ion-row>
   </ion-grid>
 </ion-item>
+<ng-template #placeholder>
+  <ion-row><img src="assets/icons/cooking_on_fire.svg" alt="Cooking on fire"></ion-row>
+</ng-template>

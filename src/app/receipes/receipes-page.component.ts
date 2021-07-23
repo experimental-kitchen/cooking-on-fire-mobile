@@ -39,6 +39,13 @@ export class RecipesPage implements OnInit {
     event.target.complete();
   }
 
+  image(planDefinition: PlanDefinition): string {
+    if (!planDefinition.relatedArtifact || !planDefinition.relatedArtifact[0]) {
+      return null;
+    }
+    return planDefinition.relatedArtifact[0].url;
+  }
+
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
