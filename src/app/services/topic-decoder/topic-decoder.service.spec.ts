@@ -120,4 +120,16 @@ describe('TopicDecoderService', () => {
     });
     expect(service.decode(planDefinition, CodeSystem.cofRecipeCategory)).toEqual(['Vorspeise', 'Apéro']);
   });
+  it('get code from resource topic by name', () => {
+    const planDefinition = createSpyObj<PlanDefinition>('planDefinition', {}, {
+      topic: [{
+        coding: [{
+          code: 'some code',
+          system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-recipecategory',
+          display: 'Hauptspeise'
+        }]
+      }]
+    });
+    expect(service.getCode(planDefinition, CodeSystem.cofRecipeCategory)).toEqual(['some code']);
+  });
 });

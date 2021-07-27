@@ -3,7 +3,6 @@ import {IonInfiniteScroll} from '@ionic/angular';
 import {FhirService} from '../services/fhir/fhir.service';
 import {Bundle, PlanDefinition} from 'fhir/r4';
 import {TopicDecoderService} from '../services/topic-decoder/topic-decoder.service';
-import {CodeSystem} from '../services/topic-decoder/CodeSystem';
 
 @Component({
   selector: 'app-receipes',
@@ -14,7 +13,6 @@ export class RecipesPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   planDefinitions: PlanDefinition[] = [];
-  codeSystem = CodeSystem;
   private offset = 0;
   private remaining: number;
   private readonly searchPageSize = 10;
@@ -45,13 +43,6 @@ export class RecipesPage implements OnInit {
     if (this.remaining < this.searchPageSize) {
       event.target.disabled = true;
     }
-  }
-
-  image(planDefinition: PlanDefinition): string {
-    if (!planDefinition.relatedArtifact || !planDefinition.relatedArtifact[0]) {
-      return null;
-    }
-    return planDefinition.relatedArtifact[0].url;
   }
 
   toggleInfiniteScroll() {
