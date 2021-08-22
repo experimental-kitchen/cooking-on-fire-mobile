@@ -9,6 +9,7 @@ import {RecipesPageRoutingModule} from './receipes-routing.module';
 import {RecipesPage} from './receipes-page.component';
 import {RecipesListItemComponent} from '../comp/recipes-list-item/recipes-list-item.component';
 import {EffortSpoonsComponent} from '../comp/effort-spoons/effort-spoons.component';
+import {DietSymbolsComponent} from '../comp/diet-symbols/diet-symbols.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import {EffortSpoonsComponent} from '../comp/effort-spoons/effort-spoons.compone
     IonicModule,
     RecipesPageRoutingModule
   ],
-  declarations: [RecipesPage, RecipesListItemComponent, EffortSpoonsComponent]
+  declarations: [RecipesPage, RecipesListItemComponent, EffortSpoonsComponent, DietSymbolsComponent]
 })
 export class RecipesPageModule {
 }

@@ -7,10 +7,17 @@
         </ion-row>
       </ion-col>
       <ion-col size="9">
-        <ion-row>{{planDefinition.title}}</ion-row>
-        <ion-row class="subtitle">{{categories|slashSeparatedListPipe}}</ion-row>
+        <ion-row class="title">
+          {{planDefinition.title}}<span *ngIf="planDefinition.subtitle">&nbsp;({{planDefinition.subtitle}})</span>
+        </ion-row>
+        <ion-row class="categories">{{categories|slashSeparatedListPipe}}</ion-row>
         <ion-row>
-          <app-effort-spoons [planDefinition]="planDefinition"></app-effort-spoons>
+          <ion-col>
+            <app-effort-spoons [planDefinition]="planDefinition"></app-effort-spoons>
+          </ion-col>
+          <ion-col>
+            <app-diet-symbols [planDefinition]="planDefinition"></app-diet-symbols>
+          </ion-col>
         </ion-row>
       </ion-col>
       <ion-col size="1">
