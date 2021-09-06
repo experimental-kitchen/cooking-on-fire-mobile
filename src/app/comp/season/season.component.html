@@ -1,1 +1,1 @@
-<ion-icon *ngIf="isSeasonal()" src="assets/icons/kalender.svg" title="saisonal" class="calendar"></ion-icon>
+<ion-icon *ngIf="isInSeason()" [src]="seasonService.actualSeasonImage()" title="saisonal" class="calendar"></ion-icon>

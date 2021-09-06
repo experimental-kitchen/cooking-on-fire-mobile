@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SeasonService} from '../../services/season/season.service';
+import {Season, SeasonService} from '../../services/season/season.service';
 import {PlanDefinition} from 'fhir/r4';
 
 @Component({
@@ -13,9 +13,11 @@ export class SeasonComponent implements OnInit {
   @Input()
   planDefinition: PlanDefinition;
 
-  constructor(private seasonService: SeasonService) { }
+  season = Season;
 
-  isSeasonal(): boolean {
+  constructor(public seasonService: SeasonService) { }
+
+  isInSeason(): boolean {
     return this.seasonService.isInSeason(this.planDefinition);
   }
 
