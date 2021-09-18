@@ -1,0 +1,33 @@
+<ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <ion-row *ngIf="image(planDefinition); else placeholder"><img src="{{image(planDefinition)}}"
+                                                                      alt="{{planDefinition.title}}">
+        </ion-row>
+      </ion-col>
+      <ion-col size="9">
+        <ion-row>
+          <span class="title">{{planDefinition.title}}</span><span *ngIf="planDefinition.subtitle">&nbsp;({{planDefinition.subtitle}})</span>
+        </ion-row>
+        <ion-row class="categories">{{categories|slashSeparatedListPipe}}</ion-row>
+        <ion-row>
+          <ion-col>
+            <app-effort-spoons [planDefinition]="planDefinition"></app-effort-spoons>
+          </ion-col>
+          <ion-col>
+            <app-diet-symbols [planDefinition]="planDefinition"></app-diet-symbols>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="1">
+        <ion-row>
+          <app-season [planDefinition]="planDefinition"></app-season>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
+<ng-template #placeholder>
+  <ion-row><img src="assets/icons/cooking_on_fire.svg" alt="Cooking on fire"></ion-row>
+</ng-template>
