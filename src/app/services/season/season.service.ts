@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {PlanDefinition} from 'fhir/r4';
 import {TopicDecoderService} from '../topic-decoder/topic-decoder.service';
-import {CodeSystem} from '../topic-decoder/CodeSystem';
+import {CodeSystem} from '../topic-decoder/code-system';
 
 @Injectable()
 export class SeasonService {

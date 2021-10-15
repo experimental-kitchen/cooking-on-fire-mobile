@@ -20,7 +20,7 @@ export class AppMenuItemComponent implements OnInit {
   @Input()
   navigationTargets: string[];
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
   }
 
   ngOnInit() {
