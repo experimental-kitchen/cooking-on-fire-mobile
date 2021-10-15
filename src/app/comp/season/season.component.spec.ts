@@ -13,7 +13,7 @@ describe('SeasonComponent', () => {
       coding: [{
         system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
         display: 'Frühling',
-        code: 'spring'
+        code: 'spring',
       }]
     }]
   });
