@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CodeableConcept, Coding, DomainResource} from 'fhir/r4';
-import {CodeSystem} from './CodeSystem';
-
+import {CodeSystem} from './code-system';
 @Injectable({
   providedIn: 'root'
 })

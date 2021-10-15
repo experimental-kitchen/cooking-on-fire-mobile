@@ -1,9 +1,9 @@
 import {TestBed} from '@angular/core/testing';
 
 import {TopicDecoderService} from './topic-decoder.service';
-import {CodeSystem} from './CodeSystem';
 import {PlanDefinition} from 'fhir/r4';
 import createSpyObj = jasmine.createSpyObj;
+import {CodeSystem} from './code-system';
 
 describe('TopicDecoderService', () => {
   let service: TopicDecoderService;

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'menu-plan',
     loadChildren: () => import('./menu-plan/menu-plan.module').then(m => m.HomePageModule),

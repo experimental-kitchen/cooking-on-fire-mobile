@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlanDefinition} from 'fhir/r4';
 import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
-import {CodeSystem} from '../../services/topic-decoder/CodeSystem';
+import {CodeSystem} from '../../services/topic-decoder/code-system';
 
 @Component({
   selector: 'app-recipes-list-item',
