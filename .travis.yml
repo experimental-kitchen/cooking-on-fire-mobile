@@ -7,5 +7,7 @@ dist: trusty # needs Ubuntu Trusty
 sudo: required
 addons:
   chrome: stable # have Travis install Chrome stable.
+install:
+  - npm install
 script:
   - npm test
