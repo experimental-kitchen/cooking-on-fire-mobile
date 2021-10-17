@@ -12,8 +12,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Installing Dependencies
+      - name: Installing dependencies
         run: sudo npm install
-      - name: Linting Frontend
+      - name: Run tests
         run: sudo npm test
 
