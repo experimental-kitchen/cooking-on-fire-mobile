@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll} from '@ionic/angular';
-import {FhirService} from '../services/fhir/fhir.service';
+import {FhirService} from '../../services/fhir/fhir.service';
 import {Bundle, PlanDefinition} from 'fhir/r4';
-import {TopicDecoderService} from '../services/topic-decoder/topic-decoder.service';
+import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
 
 @Component({
   selector: 'app-receipes',

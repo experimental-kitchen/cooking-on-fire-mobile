@@ -2,7 +2,7 @@ import {ComponentFixture, fakeAsync, TestBed, waitForAsync} from '@angular/core/
 import {IonicModule} from '@ionic/angular';
 
 import {RecipesPage} from './receipes-page.component';
-import {FhirService} from '../services/fhir/fhir.service';
+import {FhirService} from '../../services/fhir/fhir.service';
 import Client from 'fhir-kit-client';
 import {bundleResult} from './recipes.page.testdata';
 import createSpy = jasmine.createSpy;

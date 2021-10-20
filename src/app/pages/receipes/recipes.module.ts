@@ -7,10 +7,10 @@ import {IonicModule} from '@ionic/angular';
 import {RecipesPageRoutingModule} from './receipes-routing.module';
 
 import {RecipesPage} from './receipes-page.component';
-import {RecipesListItemComponent} from '../comp/recipes-list-item/recipes-list-item.component';
-import {EffortSpoonsComponent} from '../comp/effort-spoons/effort-spoons.component';
-import {DietSymbolsComponent} from '../comp/diet-symbols/diet-symbols.component';
-import {SeasonComponent} from '../comp/season/season.component';
+import {RecipesListItemComponent} from '../../components/recipes-list-item/recipes-list-item.component';
+import {EffortSpoonsComponent} from '../../components/effort-spoons/effort-spoons.component';
+import {DietSymbolsComponent} from '../../components/diet-symbols/diet-symbols.component';
+import {SeasonComponent} from '../../components/season/season.component';
 
 @NgModule({
   imports: [

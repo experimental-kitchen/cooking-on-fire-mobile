@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {RecipesPage} from './receipes-page.component';
-import {SlashSeparatedListPipePipe} from '../pipe/slash-separated-list.pipe';
-import {DietToSymbolImageFileNamePipe} from '../pipe/diet-to-symbol-image-file-name.pipe';
+import {SlashSeparatedListPipePipe} from '../../pipes/slash-separated-list.pipe';
+import {DietToSymbolImageFileNamePipe} from '../../pipes/diet-to-symbol-image-file-name.pipe';
 
 const routes: Routes = [
   {
