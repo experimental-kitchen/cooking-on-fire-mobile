@@ -17,6 +17,11 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/receipes/recipes.module').then(m => m.RecipesPageModule),
     data: {title: 'Rezepte'}
   },
+  {
+    path: 'recipe/:id',
+    loadChildren: () => import('./pages/recipe/recipe.module').then( m => m.RecipePageModule)
+  },
+
 ];
 
 @NgModule({
