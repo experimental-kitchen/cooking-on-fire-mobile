@@ -8,6 +8,8 @@ import {DietSymbolsComponent} from '../diet-symbols/diet-symbols.component';
 import {SeasonComponent} from '../season/season.component';
 import {PlanDefinition} from 'fhir/r4';
 import createSpyObj = jasmine.createSpyObj;
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../../app-routing.module';
 
 describe('RecipesListItemComponent', () => {
   let component: RecipesListItemComponent;
@@ -25,7 +27,7 @@ describe('RecipesListItemComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RecipesListItemComponent, SlashSeparatedListPipePipe, EffortSpoonsComponent, DietSymbolsComponent, SeasonComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), RouterTestingModule.withRoutes(routes)]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecipesListItemComponent);
