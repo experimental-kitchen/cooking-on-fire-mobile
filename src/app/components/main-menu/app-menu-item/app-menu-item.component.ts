@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu-item',
@@ -17,16 +16,9 @@ export class AppMenuItemComponent implements OnInit {
   @Input()
   lines: string;
 
-  @Input()
-  navigationTargets: string[];
-
-  constructor(public router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  navigateTo(targets: string[]): void {
-    this.router.navigate(targets);
   }
 }

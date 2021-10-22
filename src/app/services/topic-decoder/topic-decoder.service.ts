@@ -10,7 +10,7 @@ export class TopicDecoderService {
   }
 
   getCode<T extends DomainResource & { topic?: CodeableConcept[] }>(resource: T, codeSystem: CodeSystem): string[] {
-    if (!resource.topic) {
+    if (!resource || !resource.topic) {
       return [];
     }
 

@@ -3,8 +3,8 @@
     <ion-grid>
       <ion-row>
         <ion-col size="2">
-          <ion-row *ngIf="image(planDefinition); else placeholder"><img src="{{image(planDefinition)}}"
-                                                                        alt="{{planDefinition.title}}">
+          <ion-row>
+            <app-recipe-image-or-placeholder [planDefinition]="planDefinition"></app-recipe-image-or-placeholder>
           </ion-row>
         </ion-col>
         <ion-col size="9">
@@ -31,6 +31,3 @@
     </ion-grid>
   </a>
 </ion-item>
-<ng-template #placeholder>
-  <ion-row><img src="assets/icons/cooking_on_fire.svg" alt="Cooking on fire"></ion-row>
-</ng-template>

@@ -1,3 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>planDefinition.title</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col><app-recipe-image-or-placeholder [planDefinition]="planDefinition"></app-recipe-image-or-placeholder></ion-col>
+      <ion-col><app-season [planDefinition]="planDefinition"></app-season></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -8,7 +8,7 @@
       <ion-title>{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-menu side="start" menuId="first" contentId="main">
+  <ion-menu side="start" menuId="first" contentId="main" #mainMenu>
     <ion-header>
       <ion-grid>
         <ion-row>
@@ -24,8 +24,12 @@
     </ion-header>
     <ion-content id="main">
       <ion-list lines="none">
-        <app-menu-item iconName="calendar-outline" text="Menüplan" [navigationTargets]="['/menu-plan']"></app-menu-item>
-        <app-menu-item iconName="restaurant-outline" text="Rezepte" [navigationTargets]="['/recipes']"></app-menu-item>
+        <a [routerLink]="['/menu-plan']" (click)="mainMenu.close()">
+          <app-menu-item iconName="calendar-outline" text="Menüplan"></app-menu-item>
+        </a>
+        <a [routerLink]="['/recipes']" (click)="mainMenu.close()">
+          <app-menu-item iconName="restaurant-outline" text="Rezepte"></app-menu-item>
+        </a>
         <app-menu-item iconName="bulb-outline" text="Tipps"></app-menu-item>
         <app-menu-item iconName="basket-outline" text="Einkaufsliste"></app-menu-item>
         <app-menu-item iconName="home-outline" text="Haushalt"></app-menu-item>

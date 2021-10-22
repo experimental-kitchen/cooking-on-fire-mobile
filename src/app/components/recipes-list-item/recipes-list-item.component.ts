@@ -20,12 +20,4 @@ export class RecipesListItemComponent implements OnInit {
   ngOnInit() {
     this.categories = this.topicDecoderService.decode(this.planDefinition, this.codeSystem.cofRecipeCategory);
   }
-
-  image(planDefinition: PlanDefinition): string {
-    if (!planDefinition.relatedArtifact || !planDefinition.relatedArtifact[0]) {
-      return null;
-    }
-    return planDefinition.relatedArtifact[0].url;
-  }
-
 }
