@@ -12,7 +12,9 @@
             <span class="title">{{planDefinition.title}}</span><span
             *ngIf="planDefinition.subtitle">&nbsp;({{planDefinition.subtitle}})</span>
           </ion-row>
-          <ion-row class="categories">{{categories|slashSeparatedListPipe}}</ion-row>
+          <ion-row class="categories">
+            <app-recipe-categories [planDefinition]="planDefinition"></app-recipe-categories>
+          </ion-row>
           <ion-row>
             <ion-col>
               <app-effort-spoons [planDefinition]="planDefinition"></app-effort-spoons>

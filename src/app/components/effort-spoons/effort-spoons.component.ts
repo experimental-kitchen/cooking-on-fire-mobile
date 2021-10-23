@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {PlanDefinition} from 'fhir/r4';
 import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
 import {CodeSystem} from '../../services/topic-decoder/code-system';
@@ -8,7 +8,7 @@ import {CodeSystem} from '../../services/topic-decoder/code-system';
   templateUrl: './effort-spoons.component.html',
   styleUrls: ['./effort-spoons.component.scss'],
 })
-export class EffortSpoonsComponent implements AfterViewInit {
+export class EffortSpoonsComponent implements OnChanges {
 
   @Input()
   planDefinition: PlanDefinition;
@@ -27,7 +27,7 @@ export class EffortSpoonsComponent implements AfterViewInit {
   constructor(private topicDecoderService: TopicDecoderService) {
   }
 
-  ngAfterViewInit() {
+  ngOnChanges(changes: SimpleChanges): void {
     const efforts = this.topicDecoderService.getCode(this.planDefinition, this.codeSystem.cofEffort);
     this.setEffortStyles(efforts);
   }

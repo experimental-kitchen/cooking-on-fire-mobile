@@ -1,13 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>planDefinition.title</ion-title>
+    <ion-title>{{planDefinition ? planDefinition.title : ''}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col><app-recipe-image-or-placeholder [planDefinition]="planDefinition"></app-recipe-image-or-placeholder></ion-col>
-      <ion-col><app-season [planDefinition]="planDefinition"></app-season></ion-col>
+      <ion-col>
+        <app-recipe-image-or-placeholder [planDefinition]="planDefinition"></app-recipe-image-or-placeholder>
+      </ion-col>
+      <ion-col>
+        <app-season [planDefinition]="planDefinition"></app-season>
+      </ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <app-recipe-categories [planDefinition]="planDefinition"></app-recipe-categories>
+        <span *ngIf="planDefinition && planDefinition.subtitle">&nbsp;({{planDefinition.subtitle}})</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="flexbox">
+        <app-effort-spoons [planDefinition]="planDefinition"></app-effort-spoons>
+        <span class="topic-desc">{{effortDescription(planDefinition)}}</span>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
