@@ -1,4 +1,4 @@
-app-recipe-categories, span {
+app-recipe-categories, app-season, span {
   color: var(--ion-color-primary);
 }
 
@@ -10,4 +10,10 @@ app-recipe-categories, span {
 
 .topic-desc {
   padding: 5px 0;
+}
+
+.diet {
+  width: 48px;
+  padding: 5px 0;
+  text-align: right;
 }

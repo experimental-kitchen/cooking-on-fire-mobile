@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { RecipeCategoriesComponent } from './recipe-categories.component';
+import {RecipeCategoriesComponent} from './recipe-categories.component';
+import {SlashSeparatedListPipePipe} from '../../pipes/slash-separated-list.pipe';
 
 describe('RecipeCategoriesComponent', () => {
   let component: RecipeCategoriesComponent;
@@ -9,7 +10,7 @@ describe('RecipeCategoriesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecipeCategoriesComponent ],
+      declarations: [RecipeCategoriesComponent, SlashSeparatedListPipePipe],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

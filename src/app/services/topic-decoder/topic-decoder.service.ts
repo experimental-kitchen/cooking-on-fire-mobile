@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CodeableConcept, Coding, DomainResource} from 'fhir/r4';
 import {CodeSystem} from './code-system';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,11 +19,22 @@ export class TopicDecoderService {
   }
 
   decode<T extends DomainResource & { topic?: CodeableConcept[] }>(resource: T, codeSystem: CodeSystem): string[] {
-    if (!resource.topic) {
+    if (!resource || !resource.topic) {
       return [];
     }
 
     return this.translateCoding(resource, codeSystem, (coding) => coding.display);
+  }
+
+  codeAndDisplay<T extends DomainResource & { topic?: CodeableConcept[] }>(resource: T, codeSystem: CodeSystem):
+    { code: string; display: string } [] {
+    if (!resource || !resource.topic) {
+      return [];
+    }
+
+    return resource.topic.filter(codeableConcept => this.filterCodings(codeableConcept.coding, codeSystem))
+      .flatMap(codeableConcept => codeableConcept.coding)
+      .map((coding) => ({code: coding.code, display: coding.display}));
   }
 
   private translateCoding<T extends DomainResource & { topic?: CodeableConcept[] }>(resource: T, codeSystem: CodeSystem,

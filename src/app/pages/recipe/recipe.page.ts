@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {AppTitleService} from '../../services/app-title/app-title.service';
 import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
 import {CodeSystem} from '../../services/topic-decoder/code-system';
+import {DietImageSortService} from '../../services/diet-image-sort/diet-image-sort.service';
 
 @Component({
   selector: 'app-recipe',
@@ -16,7 +17,7 @@ export class RecipePage implements OnInit {
   planDefinition: PlanDefinition;
 
   constructor(private fhirService: FhirService, private route: ActivatedRoute, private appTitleService: AppTitleService,
-              private topicDecoderService: TopicDecoderService) {
+              private topicDecoderService: TopicDecoderService, private dietImageSortService: DietImageSortService) {
   }
 
   ngOnInit() {
@@ -37,5 +38,12 @@ export class RecipePage implements OnInit {
     }
     const effort = this.topicDecoderService.decode(planDefinition, CodeSystem.cofEffort);
     return effort.length > 0 ? effort[0] : '';
+  }
+
+  diets(planDefinition: PlanDefinition) {
+    if (!planDefinition) {
+      return '';
+    }
+    return this.topicDecoderService.codeAndDisplay(planDefinition, CodeSystem.cofDiet).sort(this.dietImageSortService.sort);
   }
 }

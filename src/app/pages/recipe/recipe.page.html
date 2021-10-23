@@ -26,5 +26,11 @@
         <span class="topic-desc">{{effortDescription(planDefinition)}}</span>
       </ion-col>
     </ion-row>
+    <ion-row *ngFor="let diet of diets(planDefinition)">
+      <ion-col class="flexbox">
+        <span class="diet"><ion-icon src="assets/icons/{{diet.code | dietToSymbolImageFileName}}"></ion-icon></span>
+        <span class="topic-desc">{{diet.display}}</span>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
