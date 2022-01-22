@@ -29,10 +29,12 @@ export class RecipesPage implements OnInit {
       resourceType: 'PlanDefinition',
       searchParams: {publisher: 'Household Cook', status: 'active', _size: size, _offset: offset},
     }).then((bundle) => {
-      (bundle as Bundle).entry.forEach(entry => {
-        this.planDefinitions.push(entry.resource as PlanDefinition);
-      });
-      this.remaining = (bundle as Bundle).total;
+      if (bundle !== undefined) {
+        (bundle as Bundle).entry.forEach(entry => {
+          this.planDefinitions.push(entry.resource as PlanDefinition);
+        });
+        this.remaining = (bundle as Bundle).total;
+      }
     });
   }
 

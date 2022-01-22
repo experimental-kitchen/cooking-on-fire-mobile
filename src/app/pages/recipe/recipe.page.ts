@@ -6,6 +6,8 @@ import {AppTitleService} from '../../services/app-title/app-title.service';
 import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
 import {CodeSystem} from '../../services/topic-decoder/code-system';
 import {DietImageSortService} from '../../services/diet-image-sort/diet-image-sort.service';
+import {Recipe} from '../../model/recipe';
+import {RecipeMapperService} from '../../services/mapper/recipe-mapper.service';
 
 @Component({
   selector: 'app-recipe',
@@ -15,9 +17,11 @@ import {DietImageSortService} from '../../services/diet-image-sort/diet-image-so
 export class RecipePage implements OnInit {
 
   planDefinition: PlanDefinition;
+  recipe: Recipe;
 
   constructor(private fhirService: FhirService, private route: ActivatedRoute, private appTitleService: AppTitleService,
-              private topicDecoderService: TopicDecoderService, private dietImageSortService: DietImageSortService) {
+              private topicDecoderService: TopicDecoderService, private dietImageSortService: DietImageSortService,
+              private recipeMapper: RecipeMapperService) {
   }
 
   ngOnInit() {
@@ -27,7 +31,8 @@ export class RecipePage implements OnInit {
         resourceType: 'PlanDefinition', id
       }).then((resource) => {
         this.planDefinition = (resource as PlanDefinition);
-        this.appTitleService.next(this.planDefinition.title);
+        this.recipe = this.recipeMapper.convert(this.planDefinition);
+        this.appTitleService.next(this.recipe.title);
       });
     });
   }

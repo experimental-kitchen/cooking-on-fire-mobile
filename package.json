@@ -26,6 +26,7 @@
     "fhir-kit-client": "^1.6.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "typevert": "^0.9.11",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

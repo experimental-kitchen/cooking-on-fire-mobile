@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{planDefinition ? planDefinition.title : ''}}</ion-title>
+    <ion-title>{{recipe != undefined ? recipe.title : ''}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -31,6 +31,11 @@
         <span class="diet"><ion-icon src="assets/icons/{{diet.code | dietToSymbolImageFileName}}"></ion-icon></span>
         <span class="topic-desc">{{diet.display}}</span>
       </ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <ion-col>Zutaten</ion-col>
+
     </ion-row>
   </ion-grid>
 </ion-content>
