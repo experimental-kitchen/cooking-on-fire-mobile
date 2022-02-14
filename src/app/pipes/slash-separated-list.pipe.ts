@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class SlashSeparatedListPipePipe implements PipeTransform {
 
   transform(strings: string[], ...args: unknown[]): string {
-    return strings ? strings.reduce((accumulator, currentValue) => accumulator + ' / ' + currentValue) : '';
+    return strings !== undefined ? strings.reduce((accumulator, currentValue) => accumulator + ' / ' + currentValue) : '';
   }
 
 }

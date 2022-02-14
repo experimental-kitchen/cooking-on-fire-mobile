@@ -2,31 +2,25 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {IonicModule} from '@ionic/angular';
 
 import {SeasonComponent} from './season.component';
-import {PlanDefinition} from 'fhir/r4';
+import {Recipe} from '../../model/recipe';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('SeasonComponent', () => {
   let component: SeasonComponent;
   let fixture: ComponentFixture<SeasonComponent>;
-  const planDefinition = createSpyObj<PlanDefinition>('planDefinition', {}, {
-    topic: [{
-      coding: [{
-        system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
-        display: 'Frühling',
-        code: 'spring',
-      }]
-    }]
+  const recipe = createSpyObj<Recipe>('recipe', {}, {
+    seasons: ['spring']
   });
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SeasonComponent],
+      declarations: [SeasonComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SeasonComponent);
     component = fixture.componentInstance;
-    component.planDefinition = planDefinition;
+    component.recipe = recipe;
     fixture.detectChanges();
   }));
 

@@ -3,11 +3,9 @@ import {PlanDefinition} from 'fhir/r4';
 import {FhirService} from '../../services/fhir/fhir.service';
 import {ActivatedRoute} from '@angular/router';
 import {AppTitleService} from '../../services/app-title/app-title.service';
-import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
-import {CodeSystem} from '../../services/topic-decoder/code-system';
-import {DietImageSortService} from '../../services/diet-image-sort/diet-image-sort.service';
 import {Recipe} from '../../model/recipe';
 import {RecipeMapperService} from '../../services/mapper/recipe-mapper.service';
+import {DietImageSortService} from '../../services/diet-image-sort/diet-image-sort.service';
 
 @Component({
   selector: 'app-recipe',
@@ -20,8 +18,7 @@ export class RecipePage implements OnInit {
   recipe: Recipe;
 
   constructor(private fhirService: FhirService, private route: ActivatedRoute, private appTitleService: AppTitleService,
-              private topicDecoderService: TopicDecoderService, private dietImageSortService: DietImageSortService,
-              private recipeMapper: RecipeMapperService) {
+              private dietImageSortService: DietImageSortService, private recipeMapper: RecipeMapperService) {
   }
 
   ngOnInit() {
@@ -37,18 +34,17 @@ export class RecipePage implements OnInit {
     });
   }
 
-  effortDescription(planDefinition: PlanDefinition) {
-    if (!planDefinition) {
+  effortDescription(recipe: Recipe): string {
+    if (!recipe.effort) {
       return '';
     }
-    const effort = this.topicDecoderService.decode(planDefinition, CodeSystem.cofEffort);
-    return effort.length > 0 ? effort[0] : '';
+    return recipe.effort ? recipe.effort.displayText : '';
   }
 
-  diets(planDefinition: PlanDefinition) {
-    if (!planDefinition) {
+  diets(recipe: Recipe) {
+    if (!recipe.diets) {
       return '';
     }
-    return this.topicDecoderService.codeAndDisplay(planDefinition, CodeSystem.cofDiet).sort(this.dietImageSortService.sort);
+    return recipe.diets.sort(this.dietImageSortService.sort);
   }
 }

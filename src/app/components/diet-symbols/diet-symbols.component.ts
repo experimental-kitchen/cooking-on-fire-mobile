@@ -1,8 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {PlanDefinition} from 'fhir/r4';
-import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
 import {DietImageSortService} from '../../services/diet-image-sort/diet-image-sort.service';
 import {CodeSystem} from '../../services/topic-decoder/code-system';
+import {Recipe} from '../../model/recipe';
 
 @Component({
   selector: 'app-diet-symbols',
@@ -12,17 +11,16 @@ import {CodeSystem} from '../../services/topic-decoder/code-system';
 export class DietSymbolsComponent implements OnChanges {
 
   @Input()
-  planDefinition: PlanDefinition;
+  recipe: Recipe;
 
   codeSystem = CodeSystem;
 
   imageNames: string[] = [];
 
-  constructor(private topicDecoderService: TopicDecoderService, private dietImageSortService: DietImageSortService) {
+  constructor(private dietImageSortService: DietImageSortService) {
   }
 
   ngOnChanges() {
-    const diets = this.topicDecoderService.getCode(this.planDefinition, this.codeSystem.cofDiet);
-    this.imageNames = diets.sort(this.dietImageSortService.sort);
+    this.imageNames = this.recipe.diets.sort(this.dietImageSortService.sort).map(diet => diet.code);
   }
 }

@@ -1,4 +1,4 @@
-<img *ngIf="image(planDefinition); else placeholder" src="{{image(planDefinition)}}" alt="{{planDefinition.title}}">
+<img *ngIf="recipe.imageUrl; else placeholder" src="{{recipe.imageUrl}}" alt="{{recipe.title}}">
 <ng-template #placeholder>
   <img src="assets/icons/cooking_on_fire.svg" alt="Cooking on fire">
 </ng-template>

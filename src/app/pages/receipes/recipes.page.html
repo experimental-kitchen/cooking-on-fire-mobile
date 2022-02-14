@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let planDefinition of planDefinitions">
-    <app-recipes-list-item [planDefinition]="planDefinition"></app-recipes-list-item>
+  <ion-list *ngFor="let recipe of recipes">
+    <app-recipes-list-item [recipe]="recipe"></app-recipes-list-item>
   </ion-list>
   <ion-infinite-scroll threshold="10%" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content

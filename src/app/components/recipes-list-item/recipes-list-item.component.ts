@@ -1,23 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PlanDefinition} from 'fhir/r4';
-import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
-import {CodeSystem} from '../../services/topic-decoder/code-system';
+import {Component, Input} from '@angular/core';
+import {Recipe} from '../../model/recipe';
 
 @Component({
   selector: 'app-recipes-list-item',
   templateUrl: './recipes-list-item.component.html',
   styleUrls: ['../../app.component.scss', './recipes-list-item.component.scss'],
 })
-export class RecipesListItemComponent implements OnInit {
+export class RecipesListItemComponent {
   @Input()
-  planDefinition: PlanDefinition;
-  categories: string[];
-  codeSystem = CodeSystem;
-
-  constructor(private topicDecoderService: TopicDecoderService) {
-  }
-
-  ngOnInit() {
-    this.categories = this.topicDecoderService.decode(this.planDefinition, this.codeSystem.cofRecipeCategory);
-  }
+  recipe: Recipe;
 }

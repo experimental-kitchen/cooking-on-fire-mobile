@@ -1,13 +1,46 @@
 import {Unit} from './unit';
-import {Season} from '../services/season/season.service';
 
 export class Recipe {
+  id: string;
   title: string;
+  subtitle: string;
   imageUrl: string;
-  season: Season;
+  seasons: string[];
+  effort: Effort;
+  diets: Diet[];
   categories: string[];
   subCategory: string;
   ingredients: IngredientList;
+}
+
+export class Effort {
+  constructor(private _size: Size, private _displayText: string) {
+  }
+
+  get size(): Size {
+    return this._size;
+  }
+
+  get displayText(): string {
+    return this._displayText;
+  }
+}
+
+export enum Size {
+  low = 1, medium, high
+}
+
+export class Diet {
+  constructor(private _code: string, private _displayText: string) {
+  }
+
+  get code(): string {
+    return this._code;
+  }
+
+  get displayText(): string {
+    return this._displayText;
+  }
 }
 
 export class IngredientList {

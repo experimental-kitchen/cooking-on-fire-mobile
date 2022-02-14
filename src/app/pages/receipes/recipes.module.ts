@@ -11,8 +11,9 @@ import {RecipesListItemComponent} from '../../components/recipes-list-item/recip
 import {EffortSpoonsComponent} from '../../components/effort-spoons/effort-spoons.component';
 import {DietSymbolsComponent} from '../../components/diet-symbols/diet-symbols.component';
 import {SeasonComponent} from '../../components/season/season.component';
-import {RecipeImageOrPlaceholderComponent} from '../../components/recipe-image-or-placeholder/recipe-image-or-placeholder.component';
-import {RecipeCategoriesComponent} from '../../components/recipe-categories/recipe-categories.component';
+import {
+  RecipeImageOrPlaceholderComponent
+} from '../../components/recipe-image-or-placeholder/recipe-image-or-placeholder.component';
 
 @NgModule({
   imports: [
@@ -24,11 +25,10 @@ import {RecipeCategoriesComponent} from '../../components/recipe-categories/reci
   exports: [
     RecipeImageOrPlaceholderComponent,
     SeasonComponent,
-    RecipeCategoriesComponent,
     EffortSpoonsComponent
   ],
   declarations: [RecipesPage, RecipesListItemComponent, EffortSpoonsComponent,
-    DietSymbolsComponent, SeasonComponent, RecipeImageOrPlaceholderComponent, RecipeCategoriesComponent]
+    DietSymbolsComponent, SeasonComponent, RecipeImageOrPlaceholderComponent]
 })
 export class RecipesPageModule {
 }

@@ -1,6 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 
 import {DietImageSortService} from './diet-image-sort.service';
+import {Diet} from '../../model/recipe';
 
 describe('DietImageSortService', () => {
   let service: DietImageSortService;
@@ -15,11 +16,9 @@ describe('DietImageSortService', () => {
   });
 
   it('lactose-free should be before pesce', () => {
-    expect(service.sort('pesce', 'lactose-free')).toBeGreaterThan(0);
-    expect(service.sort({code: 'pesce', display: 'Fisch'}, {
-      code: 'lactose-free',
-      display: 'laktosefrei'
-    })).toBeGreaterThan(0);
+    const a = new Diet('pesce', 'Fisch');
+    const b = new Diet('lactose-free', 'laktosefrei');
+    expect(service.sort(a, b)).toBeGreaterThan(0);
   });
 
   it('vegan should be after vegetarian', () => {

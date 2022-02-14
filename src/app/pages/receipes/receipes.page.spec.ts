@@ -31,6 +31,6 @@ describe('ReceipePage', () => {
   });
 
   it('mock fhirService', fakeAsync(() => {
-    expect(component.planDefinitions).toHaveSize(32);
+    expect(component.recipes).toHaveSize(32);
   }));
 });

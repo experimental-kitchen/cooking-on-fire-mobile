@@ -2,21 +2,14 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {IonicModule} from '@ionic/angular';
 
 import {EffortSpoonsComponent} from './effort-spoons.component';
-import {PlanDefinition} from 'fhir/r4';
+import {Effort, Recipe, Size} from '../../model/recipe';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('EffortSpoonsComponent', () => {
   let component: EffortSpoonsComponent;
   let fixture: ComponentFixture<EffortSpoonsComponent>;
-  const planDefinition = createSpyObj<PlanDefinition>('planDefinition', {}, {
-    topic: [{
-      coding: [
-        {
-          system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-effort',
-          display: 'Geht ganz schnell',
-          code: '1'
-        }]
-    }]
+  const recipe = createSpyObj<Recipe>('recipe', {}, {
+    effort: new Effort(Size.low, 'Geht ganz schnell')
   });
 
   beforeEach(waitForAsync(() => {
@@ -27,7 +20,7 @@ describe('EffortSpoonsComponent', () => {
 
     fixture = TestBed.createComponent(EffortSpoonsComponent);
     component = fixture.componentInstance;
-    component.planDefinition = planDefinition;
+    component.recipe = recipe;
     fixture.detectChanges();
   }));
 

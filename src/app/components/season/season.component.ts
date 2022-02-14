@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Season, SeasonService} from '../../services/season/season.service';
-import {PlanDefinition} from 'fhir/r4';
+import {Recipe} from '../../model/recipe';
 
 @Component({
   selector: 'app-season',
@@ -11,16 +11,18 @@ import {PlanDefinition} from 'fhir/r4';
 export class SeasonComponent implements OnInit {
 
   @Input()
-  planDefinition: PlanDefinition;
+  recipe: Recipe;
 
   season = Season;
 
-  constructor(public seasonService: SeasonService) { }
-
-  isInSeason(): boolean {
-    return this.seasonService.isInSeason(this.planDefinition);
+  constructor(public seasonService: SeasonService) {
   }
 
-  ngOnInit() {}
+  isInSeason(): boolean {
+    return this.seasonService.isInSeason(this.recipe);
+  }
+
+  ngOnInit() {
+  }
 
 }

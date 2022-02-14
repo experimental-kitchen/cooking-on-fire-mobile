@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll} from '@ionic/angular';
 import {FhirService} from '../../services/fhir/fhir.service';
 import {Bundle, PlanDefinition} from 'fhir/r4';
-import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.service';
+import {Recipe} from '../../model/recipe';
+import {RecipeMapperService} from '../../services/mapper/recipe-mapper.service';
 
 @Component({
   selector: 'app-receipes',
@@ -12,12 +13,12 @@ import {TopicDecoderService} from '../../services/topic-decoder/topic-decoder.se
 export class RecipesPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  planDefinitions: PlanDefinition[] = [];
+  recipes: Recipe[] = [];
   private offset = 0;
   private remaining: number;
   private readonly searchPageSize = 10;
 
-  constructor(private fhirService: FhirService, public topicDecoderService: TopicDecoderService) {
+  constructor(private fhirService: FhirService, private recipeMapperService: RecipeMapperService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class RecipesPage implements OnInit {
     }).then((bundle) => {
       if (bundle !== undefined) {
         (bundle as Bundle).entry.forEach(entry => {
-          this.planDefinitions.push(entry.resource as PlanDefinition);
+          this.recipes.push(this.recipeMapperService.convert(entry.resource as PlanDefinition));
         });
         this.remaining = (bundle as Bundle).total;
       }

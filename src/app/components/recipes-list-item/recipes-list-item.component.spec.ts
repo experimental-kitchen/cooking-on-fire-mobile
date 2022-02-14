@@ -6,22 +6,16 @@ import {SlashSeparatedListPipePipe} from '../../pipes/slash-separated-list.pipe'
 import {EffortSpoonsComponent} from '../effort-spoons/effort-spoons.component';
 import {DietSymbolsComponent} from '../diet-symbols/diet-symbols.component';
 import {SeasonComponent} from '../season/season.component';
-import {PlanDefinition} from 'fhir/r4';
-import createSpyObj = jasmine.createSpyObj;
 import {RouterTestingModule} from '@angular/router/testing';
 import {routes} from '../../app-routing.module';
+import {Recipe} from '../../model/recipe';
+import createSpyObj = jasmine.createSpyObj;
 
 describe('RecipesListItemComponent', () => {
   let component: RecipesListItemComponent;
   let fixture: ComponentFixture<RecipesListItemComponent>;
-  const planDefinition = createSpyObj<PlanDefinition>('planDefinition', {}, {
-    topic: [{
-      coding: [{
-        system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-recipecategory',
-        display: 'Vorspeise',
-        code: 'starter'
-        }]
-    }]
+  const recipe = createSpyObj<Recipe>('recipe', {}, {
+    categories: ['Vorspeise']
   });
 
   beforeEach(waitForAsync(() => {
@@ -32,7 +26,7 @@ describe('RecipesListItemComponent', () => {
 
     fixture = TestBed.createComponent(RecipesListItemComponent);
     component = fixture.componentInstance;
-    component.planDefinition = planDefinition;
+    component.recipe = recipe;
     fixture.detectChanges();
   }));
 
