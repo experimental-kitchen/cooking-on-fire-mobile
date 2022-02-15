@@ -1,9 +1,8 @@
 import {TestBed} from '@angular/core/testing';
 
 import {RecipeMapperService} from './recipe-mapper.service';
-import {PlanDefinition} from 'fhir/r4';
-import {readAndParseJson} from '@angular/cli/utilities/json-file';
-import {Recipe} from '../../model/recipe';
+import * as given from '../../../assets/stubs/plan-definition.json';
+import * as expected from '../../../assets/stubs/recipe.json';
 
 describe('RecipeMapperService', () => {
   let service: RecipeMapperService;
@@ -18,9 +17,6 @@ describe('RecipeMapperService', () => {
   });
 
   it('PlanDefinition is mapped to Recipe', () => {
-    const given: PlanDefinition = readAndParseJson('plan-definition.json');
-    const expected: Recipe = readAndParseJson('');
-    console.log(given);
     expect(service.convert(given))
       .toEqual(expected);
   });

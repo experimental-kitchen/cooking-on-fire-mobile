@@ -18,7 +18,8 @@
     ],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

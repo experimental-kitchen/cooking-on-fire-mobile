@@ -22,8 +22,8 @@ describe('DietImageSortService', () => {
   });
 
   it('vegan should be after vegetarian', () => {
-    const a = new Diet('vegetarian', 'vegan');
-    const b = new Diet('vegetarian', 'vegetarisch');
+    const a = new Diet('vegetarian', 'vegetarisch');
+    const b = new Diet('vegan', 'vegan');
     expect(service.sort(a, b)).toBeLessThan(0);
   });
 

@@ -1,0 +1,21 @@
+{
+  "id": "a05feeec-019a-4e29-ad2b-b7c3b3940f49",
+  "title": "Spargeltarte mit Bresaola",
+  "subtitle": "Italien",
+  "imageUrl": "https://raw.githubusercontent.com/experimental-kitchen/cooking-on-fire-ig/main/input/images/asparagus-tart-with-bresaola.png",
+  "seasons": [
+    "spring"
+  ],
+  "effort": {
+    "size": 1,
+    "displayText": "Geht ganz schnell"
+  },
+  "categories": [
+    "Vorspeise",
+    "Hauptspeise"
+  ],
+  "diets": [
+  ],
+  "subCategory": null,
+  "ingredients": null
+}
