@@ -22,24 +22,26 @@ describe('DietImageSortService', () => {
   });
 
   it('vegan should be after vegetarian', () => {
-    expect(service.sort('vegetarian', 'vegan')).toBeLessThan(0);
-    expect(service.sort({code: 'vegetarian', display: 'vegetarisch'}, {
-      code: 'vegan',
-      display: 'vegan'
-    })).toBeLessThan(0);
+    const a = new Diet('vegetarian', 'vegan');
+    const b = new Diet('vegetarian', 'vegetarisch');
+    expect(service.sort(a, b)).toBeLessThan(0);
   });
 
   it('something undefined should not be sorted', () => {
-    expect(service.sort('unknown', 'vegan')).toBe(0);
-    expect(service.sort({code: 'unknown', display: 'unknown'}, {code: 'vegan', display: 'vegan'})).toBe(0);
+    const a = new Diet('vegan', 'vegan');
+    const b = new Diet('unknown', 'unknown');
+    expect(service.sort(a, b)).toBe(0);
   });
 
   it('something undefined should not be sorted either way', () => {
-    expect(service.sort('vegetarian', 'unknown')).toBe(0);
-    expect(service.sort({code: 'vegetarian', display: 'vegetarisch'}, {code: 'unknown', display: 'unknown'})).toBe(0);
+    const a = new Diet('vegetarian', 'vegetarisch');
+    const b = new Diet('unknown', 'unknown');
+    expect(service.sort(a, b)).toBe(0);
   });
 
   it('both undefined should not be sorted', () => {
-    expect(service.sort({code: 'unknown', display: 'unknown'}, {code: 'unknown', display: 'unknown'})).toBe(0);
+    const a = new Diet('unknown', 'unknown');
+    const b = new Diet('unknown', 'unknown');
+    expect(service.sort(a, b)).toBe(0);
   });
 });
