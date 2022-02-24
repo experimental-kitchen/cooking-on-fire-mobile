@@ -22,6 +22,7 @@ export class IngredientMapperService {
     return ingredient.quantity?.numerator?.unit !== undefined ? Unit[ingredient.quantity.numerator.unit.toLowerCase()] : null;
   }
 
+
   private name(ingredient: SubstanceIngredient): string {
     return ingredient.substanceCodeableConcept?.text;
   }

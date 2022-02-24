@@ -16,7 +16,7 @@
     <ion-item-divider></ion-item-divider>
     <ion-row>
       <ion-col>
-        {{recipe.categories|slashSeparatedListPipe}}
+        <b>{{recipe.categories|slashSeparatedListPipe}}</b>
         <span *ngIf="recipe.subtitle">&nbsp;({{recipe.subtitle}})</span>
       </ion-col>
     </ion-row>
@@ -34,7 +34,7 @@
     </ion-row>
     <ion-item-divider></ion-item-divider>
     <ion-row>
-      <ion-col>Zutaten</ion-col>
+      <ion-col><b>Zutaten</b></ion-col>
     </ion-row>
     <ion-row *ngFor="let ingredient of recipe.ingredients.ingredients">
       <ion-col class="flexbox">
@@ -42,6 +42,5 @@
         <span>{{ingredient.name}}</span>
       </ion-col>
     </ion-row>
-
   </ion-grid>
 </ion-content>
