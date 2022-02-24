@@ -28,9 +28,9 @@ export class EffortSpoonsComponent implements OnChanges {
   }
 
   private setEffortStyles(effort: Effort) {
-    if (effort.size === Size.medium) {
+    if (effort !== undefined && effort.size === Size.medium) {
       this.highEffortStyle = this.iconDisabledStyle;
-    } else if (effort.size === Size.low) {
+    } else if (effort !== undefined && effort.size === Size.low) {
       this.highEffortStyle = this.iconDisabledStyle;
       this.mediumEffortStyle = this.iconDisabledStyle;
     }

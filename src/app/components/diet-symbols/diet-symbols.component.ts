@@ -21,6 +21,6 @@ export class DietSymbolsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.imageNames = this.recipe.diets.sort(this.dietImageSortService.sort).map(diet => diet.code);
+    this.imageNames = this.recipe.diets?.sort(this.dietImageSortService.sort).map(diet => diet.code);
   }
 }

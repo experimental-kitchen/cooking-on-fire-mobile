@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { DietSymbolsComponent } from './diet-symbols.component';
+import {DietSymbolsComponent} from './diet-symbols.component';
 
 describe('DietSymbolsComponent', () => {
   let component: DietSymbolsComponent;
@@ -9,7 +9,7 @@ describe('DietSymbolsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DietSymbolsComponent ],
+      declarations: [DietSymbolsComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

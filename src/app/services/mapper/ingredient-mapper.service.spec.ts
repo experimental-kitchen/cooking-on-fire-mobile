@@ -41,6 +41,14 @@ describe('IngredientMapperService', () => {
     };
 
     expect(service.convert(ingredient))
-      .toEqual(new Ingredient(undefined, null, 'ausgewallter Kuchenteig rechteckig', 1, 2, '(ca. 25 x 48 cm)'));
+      .toEqual(
+        new Ingredient.Builder()
+          .withName('ausgewallter Kuchenteig rechteckig')
+          .withAmount(1)
+          .withPortions(2)
+          .withComment('(ca. 25 x 48 cm)')
+          .withUnit(null)
+          .build()
+      );
   });
 });

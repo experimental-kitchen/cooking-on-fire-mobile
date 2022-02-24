@@ -43,7 +43,7 @@ export class RecipePage implements OnInit {
 
   diets(recipe: Recipe) {
     if (!recipe.diets) {
-      return '';
+      return [];
     }
     return recipe.diets.sort(this.dietImageSortService.sort);
   }

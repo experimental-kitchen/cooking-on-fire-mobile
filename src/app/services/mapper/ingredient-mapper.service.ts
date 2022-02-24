@@ -1,48 +1,41 @@
-import {Injectable} from '@angular/core';
-import {Converter, Mapper} from 'typevert';
 import {Ingredient} from '../../model/recipe';
+import {SubstanceIngredient} from 'fhir/r4';
 import {Unit} from '../../model/unit';
-import {CodeableConcept, Quantity, Ratio, SubstanceIngredient} from 'fhir/r4';
-
-export class CoFSubstanceIngredient implements SubstanceIngredient {
-  id?: string;
-  quantity?: CoFRatio;
-  substanceCodeableConcept?: CodeableConcept;
-}
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-@Mapper({sourceType: CoFSubstanceIngredient, targetType: Ingredient}, [
-  {
-    source: 'quantity',
-    target: 'unit',
-    expr: quantity => quantity?.numerator?.unit !== undefined ? Unit[quantity.numerator.unit.toLowerCase()] : null
-  },
-  {source: 'substanceCodeableConcept', target: 'name', expr: cc => cc?.text},
-  {source: 'quantity', target: 'amount', expr: quantity => quantity?.numerator?.value},
-  {source: 'quantity', target: 'portions', expr: quantity => quantity?.denominator?.value},
-  {source: 'substanceCodeableConcept', target: 'comment', expr: cc => extractComment(cc)}
-])
-export class IngredientMapperService extends Converter<CoFSubstanceIngredient, Ingredient> {
+export class IngredientMapperService {
+  convert(ingredient: SubstanceIngredient): Ingredient {
+    return new Ingredient.Builder()
+      .withProductId(ingredient.id)
+      .withName(this.name(ingredient))
+      .withAmount(this.amount(ingredient))
+      .withPortions(this.portions(ingredient))
+      .withUnit(this.unit(ingredient))
+      .withComment(this.comment(ingredient))
+      .build();
+  }
 
-}
+  private unit(ingredient: SubstanceIngredient): Unit {
+    return ingredient.quantity?.numerator?.unit !== undefined ? Unit[ingredient.quantity.numerator.unit.toLowerCase()] : null;
+  }
 
-const extractComment = (codeableConcept: CodeableConcept) => {
-  const comment = codeableConcept?.extension?.find(ext => ext.url === 'http://cooking-on-fire.ch/fhir/StructureDefinition/cof-comment');
-  return comment?.valueString;
-};
+  private name(ingredient: SubstanceIngredient): string {
+    return ingredient.substanceCodeableConcept?.text;
+  }
 
-export class CoFCodeableConcept implements CodeableConcept {
-  text?: string;
-}
+  private amount(ingredient: SubstanceIngredient): number {
+    return ingredient.quantity?.numerator?.value
+  }
 
-export class CoFQuantity implements Quantity {
-  unit?: string;
-  value?: number;
-}
+  private portions(ingredient: SubstanceIngredient): number {
+    return ingredient.quantity?.denominator?.value
+  }
 
-export class CoFRatio implements Ratio {
-  denominator?: CoFQuantity;
-  numerator?: CoFQuantity;
+  private comment(ingredient: SubstanceIngredient): string {
+    const comment = ingredient.substanceCodeableConcept?.extension?.find(ext => ext.url === 'http://cooking-on-fire.ch/fhir/StructureDefinition/cof-comment');
+    return comment?.valueString;
+  };
 }

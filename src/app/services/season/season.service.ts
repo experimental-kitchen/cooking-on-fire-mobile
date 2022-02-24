@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {TopicDecoderService} from '../topic-decoder/topic-decoder.service';
 import {Recipe} from '../../model/recipe';
 
 @Injectable()
@@ -12,12 +11,12 @@ export class SeasonService {
     return this._currentDate;
   }
 
-  constructor(private topicDecoderService: TopicDecoderService) {
+  constructor() {
     this.seasonMapper = new SeasonMapper();
   }
 
   isInSeason(recipe: Recipe): boolean {
-    return recipe.seasons.find(seasonOfRecipe =>
+    return recipe.seasons?.find(seasonOfRecipe =>
       this.seasonMapper.isDateInSeason(this.currentDate, Season[seasonOfRecipe])
     ) !== undefined;
   }

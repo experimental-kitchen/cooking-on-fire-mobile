@@ -7,22 +7,13 @@ export class Recipe {
   imageUrl: string;
   seasons: string[];
   effort: Effort;
-  diets: Diet[];
-  categories: string[];
-  subCategory: string;
+  diets: Diet[] = [];
+  categories: string[] = [];
   ingredients: IngredientList;
 }
 
 export class Effort {
-  constructor(private _size: Size, private _displayText: string) {
-  }
-
-  get size(): Size {
-    return this._size;
-  }
-
-  get displayText(): string {
-    return this._displayText;
+  constructor(public size: Size, public displayText: string) {
   }
 }
 
@@ -31,111 +22,90 @@ export enum Size {
 }
 
 export class Diet {
-  constructor(private _code: string, private _displayText: string) {
-  }
-
-  get code(): string {
-    return this._code;
-  }
-
-  get displayText(): string {
-    return this._displayText;
+  constructor(public code: string, public displayText: string) {
   }
 }
 
 export class IngredientList {
-  constructor(private _portions: number, private _ingredients: Ingredient[]) {
-  }
-
-  get portions(): number {
-    return this._portions;
-  }
-
-  get ingredients(): Ingredient[] {
-    return this._ingredients;
+  constructor(public portions: number, public ingredients: Ingredient[]) {
   }
 }
 
 export class Step {
-  private readonly _id: string;
-  private readonly _step: number;
-
-  constructor(id: string, step: number) {
-    this._id = id;
-    this._step = step;
-  }
-
-  get id(): string {
-    return this._id;
-  }
-
-  get step(): number {
-    return this._step;
+  constructor(public id: string, public step: number) {
   }
 }
 
 export class Ingredient {
+  public productId: string;
+  public name: string;
+  public amount: number;
+  public portions: number;
+  public unit?: Unit;
+  public comment?: string;
+  public step?: Step;
 
-  private _step: Step;
-
-  constructor(private _productId, private _unit: Unit, private _name: string, private _amount: number, private _portions: number,
-              private _comment: string) {
+  constructor();
+  constructor(builder?: Ingredient.Builder) {
+    return builder?.build();
   }
+}
 
+export namespace Ingredient {
+  export class Builder {
+    private productId: string;
+    private name: string;
+    private amount: number;
+    private portions: number;
+    private unit?: Unit;
+    private comment?: string;
+    private step?: Step;
 
-  get productId() {
-    return this._productId;
-  }
+    public withProductId(productId: string): Builder {
+      this.productId = productId;
+      return this;
+    }
 
-  set productId(value) {
-    this._productId = value;
-  }
+    public withName(name: string): Builder {
+      this.name = name;
+      return this;
+    }
 
-  get unit(): Unit {
-    return this._unit;
-  }
+    public withAmount(amount: number): Builder {
+      this.amount = amount;
+      return this;
+    }
 
-  set unit(value: Unit) {
-    this._unit = value;
-  }
+    public withPortions(portions: number): Builder {
+      this.portions = portions;
+      return this;
+    }
 
-  get name(): string {
-    return this._name;
-  }
+    public withUnit(unit: Unit): Builder {
+      this.unit = unit;
+      return this;
+    }
 
-  get amount(): number {
-    return this._amount;
-  }
+    public withComment(comment: string): Builder {
+      this.comment = comment;
+      return this;
+    }
 
-  get portions(): number {
-    return this._portions;
-  }
+    public withStep(step: Step): Builder {
+      this.step = step;
+      return this;
+    }
 
-  get comment(): string {
-    return this._comment;
-  }
-
-  get step(): Step {
-    return this._step;
-  }
-
-  set step(value: Step) {
-    this._step = value;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
-
-  set amount(value: number) {
-    this._amount = value;
-  }
-
-  set portions(value: number) {
-    this._portions = value;
-  }
-
-  set comment(value: string) {
-    this._comment = value;
+    public build(): Ingredient {
+      let ingredient = new Ingredient()
+      ingredient.productId = this.productId;
+      ingredient.name = this.name;
+      ingredient.amount = this.amount;
+      ingredient.portions = this.portions;
+      ingredient.unit = this.unit;
+      ingredient.comment = this.comment;
+      ingredient.step = this.step;
+      return ingredient;
+    }
   }
 }
