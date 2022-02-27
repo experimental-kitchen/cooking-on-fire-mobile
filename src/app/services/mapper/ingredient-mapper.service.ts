@@ -1,6 +1,5 @@
-import {Ingredient} from '../../model/recipe';
+import {Ingredient, Unit} from '../../model/recipe';
 import {SubstanceIngredient} from 'fhir/r4';
-import {Unit} from '../../model/unit';
 import {Injectable} from '@angular/core';
 
 @Injectable({
@@ -19,7 +18,10 @@ export class IngredientMapperService {
   }
 
   private unit(ingredient: SubstanceIngredient): Unit {
-    return ingredient.quantity?.numerator?.unit !== undefined ? Unit[ingredient.quantity.numerator.unit.toLowerCase()] : null;
+    const abbreviation = ingredient.quantity?.numerator?.code;
+    const name = ingredient.quantity?.numerator?.unit;
+    return abbreviation != undefined && name != undefined ?
+      new Unit(abbreviation, name) : null;
   }
 
 

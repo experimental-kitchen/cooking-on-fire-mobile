@@ -38,7 +38,7 @@
     </ion-row>
     <ion-row *ngFor="let ingredient of recipe.ingredients.ingredients">
       <ion-col class="flexbox">
-        <span class="ingredient-amount">{{ingredient.amount}} {{ingredient.unit}}</span>
+        <span class="ingredient-amount">{{ingredient.amount}} {{ingredient?.unit?.abbreviation}}</span>
         <span>{{ingredient.name}}</span>
       </ion-col>
     </ion-row>

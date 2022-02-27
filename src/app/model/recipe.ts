@@ -1,5 +1,3 @@
-import {Unit} from './unit';
-
 export class Recipe {
   id: string;
   title: string;
@@ -33,6 +31,11 @@ export class IngredientList {
 
 export class Step {
   constructor(public id: string, public step: number) {
+  }
+}
+
+export class Unit {
+  constructor(public abbreviation: string, public name: string) {
   }
 }
 
