@@ -36,10 +36,15 @@
     <ion-row>
       <ion-col><b>Zutaten</b></ion-col>
     </ion-row>
-    <ion-row *ngFor="let ingredient of recipe.ingredients.ingredients">
-      <ion-col class="flexbox">
-        <span class="ingredient-amount">{{ingredient.amount}} {{ingredient?.unit?.abbreviation}}</span>
-        <span>{{ingredient.name}}</span>
+    <ion-row *ngFor="let step of recipe.steps">
+      <ion-col>
+        <ion-row *ngFor="let ingredient of step.ingredients">
+          <ion-col class="flexbox">
+            <span class="ingredient-amount">{{ingredient.amount}} {{ingredient?.unit?.abbreviation}}</span>
+            <span>{{ingredient.name}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
       </ion-col>
     </ion-row>
   </ion-grid>

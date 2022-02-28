@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Diet, Effort, Ingredient, IngredientList, Recipe, Step} from '../../model/recipe';
-import {ActivityDefinition, PlanDefinition, PlanDefinitionAction, Substance} from 'fhir/r4';
+import {Diet, Effort, Recipe, Step} from '../../model/recipe';
+import {ActivityDefinition, PlanDefinition, Substance} from 'fhir/r4';
 import {Substance2IngredientsMapperService} from './substance2-ingredients-mapper.service';
 import {TopicDecoderService} from '../topic-decoder/topic-decoder.service';
 import {CodeSystem} from '../topic-decoder/code-system';
@@ -15,7 +15,6 @@ export class RecipeMapperService {
   }
 
   convert(planDefinition: PlanDefinition): Recipe {
-    const ingredients = this.extractIngredients(planDefinition);
     const recipe = new Recipe();
     recipe.id = planDefinition.id;
     recipe.title = planDefinition.title;
@@ -26,57 +25,42 @@ export class RecipeMapperService {
     recipe.diets = this.diets(planDefinition);
     recipe.categories = this.topicDecoderService.decode(planDefinition, this.codeSystem.cofRecipeCategory);
     recipe.seasons = this.topicDecoderService.getCode(planDefinition, CodeSystem.cofSeason);
-    recipe.ingredients = new IngredientList(ingredients[0].portions, ingredients);
+    recipe.steps = this.addSteps(planDefinition);
     return recipe;
   }
 
-  diets(planDefinition: PlanDefinition): Diet[] {
+  private diets(planDefinition: PlanDefinition): Diet[] {
     return this.topicDecoderService.codeAndDisplay(planDefinition, this.codeSystem.cofDiet)
       .map(codeAndDisplay => new Diet(codeAndDisplay.code, codeAndDisplay.display));
   }
 
-  imageUrl(planDefinition: PlanDefinition): string {
+  private imageUrl(planDefinition: PlanDefinition): string {
     if (!planDefinition || !planDefinition.relatedArtifact || !planDefinition.relatedArtifact[0]) {
       return null;
     }
     return planDefinition.relatedArtifact[0].url;
   }
 
-  private extractIngredients(planDefinition: PlanDefinition) {
-    const activities = this.activitiesMap(planDefinition);
-    const actions = this.actionsMap(planDefinition);
-    const ingredients = this.convertSubstances2Ingredients(planDefinition);
-    ingredients.forEach((ingredient) => this.addStep(ingredient, activities, actions));
-    return ingredients;
+  private activities(planDefinition: PlanDefinition): ActivityDefinition[] {
+    return planDefinition.contained.filter(c => c.resourceType === 'ActivityDefinition')
+      .map(c => c as ActivityDefinition);
   }
 
-  private convertSubstances2Ingredients(planDefinition: PlanDefinition) {
+  private substances(planDefinition: PlanDefinition): Substance[] {
     return planDefinition.contained.filter(c => c.resourceType === 'Substance')
-      .map(c => this.substance2IngredientsMapper.convert(c as Substance))
-      .flat(1);
+      .map(c => c as Substance);
   }
 
-  private activitiesMap(planDefinition: PlanDefinition): Map<string, ActivityDefinition> {
-    const activities = new Map<string, ActivityDefinition>();
-    planDefinition.contained.filter(c => c.resourceType === 'ActivityDefinition')
-      .map(c => c as ActivityDefinition)
-      .forEach(c => {
-        if (c.productReference !== undefined) {
-          activities.set(c.productReference.reference, c)
-        }
-      });
-    return activities;
-  }
-
-  private actionsMap(planDefinition: PlanDefinition): Map<string, PlanDefinitionAction> {
-    const actions = new Map<string, PlanDefinitionAction>();
-    planDefinition.action.forEach(a => actions.set(a.definitionCanonical, a));
-    return actions;
-  }
-
-  private addStep(ingredient: Ingredient, activities: Map<string, ActivityDefinition>, actions: Map<string, PlanDefinitionAction>) {
-    const activity = activities.get('#' + ingredient.productId);
-    const action = actions.get('#' + activity.id);
-    ingredient.step = new Step(activity.id, +action.prefix);
+  private addSteps(planDefinition: PlanDefinition): Step[] {
+    return planDefinition.action.map(action => {
+      const activityReferences = this.activities(planDefinition).filter(activity => '#' + activity.id === action.definitionCanonical)
+        .map(activity => activity.productReference.reference);
+      const step = new Step(action.id, +(action.prefix.substring(0, action.prefix.length - 1)));
+      this.substances(planDefinition)
+        .filter(substance => activityReferences.includes('#' + substance.id))
+        .flatMap(substance => this.substance2IngredientsMapper.convert(substance))
+        .forEach(ingredient => step.addIngredient(ingredient));
+      return step;
+    });
   }
 }
