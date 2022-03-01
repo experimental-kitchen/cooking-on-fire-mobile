@@ -53,9 +53,10 @@ export class RecipeMapperService {
 
   private addSteps(planDefinition: PlanDefinition): Step[] {
     return planDefinition.action.map(action => {
-      const activityReferences = this.activities(planDefinition).filter(activity => '#' + activity.id === action.definitionCanonical)
-        .map(activity => activity.productReference.reference);
       const step = new Step(action.id, +(action.prefix.substring(0, action.prefix.length - 1)));
+      const activities = this.activities(planDefinition);
+      const activityReferences = activities.filter(activity => '#' + activity.id === action.definitionCanonical)
+        .map(activity => activity.productReference.reference);
       this.substances(planDefinition)
         .filter(substance => activityReferences.includes('#' + substance.id))
         .flatMap(substance => this.substance2IngredientsMapper.convert(substance))

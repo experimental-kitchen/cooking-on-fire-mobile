@@ -41,11 +41,16 @@
         <ion-row *ngFor="let ingredient of step.ingredients">
           <ion-col class="flexbox">
             <span class="ingredient-amount">{{ingredient.amount}} {{ingredient?.unit?.abbreviation}}</span>
-            <span>{{ingredient.name}}</span>
+            <span>{{ingredient.name}}
+              <ion-text class="comment"
+                        *ngIf="ingredient.comment !== undefined">{{ingredient.comment}}</ion-text></span>
           </ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>
       </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><b>Zubereitung</b></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

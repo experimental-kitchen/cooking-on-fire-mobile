@@ -9,8 +9,10 @@
         </ion-col>
         <ion-col size="9">
           <ion-row>
-            <span class="title">{{recipe.title}}</span><span
-            *ngIf="recipe.subtitle">&nbsp;({{recipe.subtitle}})</span>
+            <span class="title">{{recipe.title}}</span>
+            <ion-text
+              *ngIf="recipe.subtitle" color="secondary">&nbsp;({{recipe.subtitle}})
+            </ion-text>
           </ion-row>
           <ion-row class="categories">{{recipe.categories|slashSeparatedListPipe}}</ion-row>
           <ion-row>
@@ -22,7 +24,7 @@
             </ion-col>
           </ion-row>
         </ion-col>
-        <ion-col size="1">
+        <ion-col size="1" class="season">
           <ion-row>
             <app-season [recipe]="recipe"></app-season>
           </ion-row>

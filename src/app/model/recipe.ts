@@ -27,6 +27,8 @@ export class Diet {
 export class Step {
   public ingredients: Ingredient[] = [];
 
+  // public actions: Action[] = [];
+
   constructor(public id: string, public step: number) {
   }
 
@@ -47,7 +49,6 @@ export class Ingredient {
   public portions: number;
   public unit?: Unit;
   public comment?: string;
-  public step?: Step;
 
   constructor();
   constructor(builder?: Ingredient.Builder) {
@@ -63,7 +64,6 @@ export namespace Ingredient {
     private portions: number;
     private unit?: Unit;
     private comment?: string;
-    private step?: Step;
 
     public withProductId(productId: string): Builder {
       this.productId = productId;
@@ -95,11 +95,6 @@ export namespace Ingredient {
       return this;
     }
 
-    public withStep(step: Step): Builder {
-      this.step = step;
-      return this;
-    }
-
     public build(): Ingredient {
       let ingredient = new Ingredient()
       ingredient.productId = this.productId;
@@ -108,7 +103,6 @@ export namespace Ingredient {
       ingredient.portions = this.portions;
       ingredient.unit = this.unit;
       ingredient.comment = this.comment;
-      ingredient.step = this.step;
       return ingredient;
     }
   }
