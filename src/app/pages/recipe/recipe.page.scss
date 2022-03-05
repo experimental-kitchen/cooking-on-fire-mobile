@@ -6,23 +6,33 @@ app-recipe-categories, app-season, span, ion-col {
   display: flex;
   gap: 10px;
   color: var(--ion-color-primary);
+  margin-top: 6px;
 }
 
 .topic-desc {
-  padding: 5px 0;
+  padding: 10px 0;
+}
+
+.spoon-padding {
+  padding-top: 15px;
 }
 
 .diet {
-  width: 48px;
+  width: 124px;
   padding: 5px 0;
   text-align: right;
 }
 
+.diet-icon {
+  font-size: 25px;
+}
+
 .ingredient-amount {
-  width: 48px;
+  width: 124px;
   color: var(--ion-color-primary);
   text-align: right;
   padding-right: 0;
+  flex: none;
 }
 
 .comment {

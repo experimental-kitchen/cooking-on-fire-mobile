@@ -22,13 +22,14 @@
     </ion-row>
     <ion-row>
       <ion-col class="flexbox">
-        <app-effort-spoons [recipe]="recipe"></app-effort-spoons>
-        <span class="topic-desc">{{effortDescription(recipe)}}</span>
+        <span class="diet"><app-effort-spoons [recipe]="recipe" style="float:right"></app-effort-spoons></span>
+        <span class="topic-desc spoon-padding">{{effortDescription(recipe)}}</span>
       </ion-col>
     </ion-row>
     <ion-row *ngFor="let diet of diets(recipe)">
       <ion-col class="flexbox">
-        <span class="diet"><ion-icon src="assets/icons/{{diet.code | dietToSymbolImageFileName}}"></ion-icon></span>
+        <span class="diet"><ion-icon src="assets/icons/{{diet.code | dietToSymbolImageFileName}}"
+                                     class="diet-icon"></ion-icon></span>
         <span class="topic-desc">{{diet.displayText}}</span>
       </ion-col>
     </ion-row>
