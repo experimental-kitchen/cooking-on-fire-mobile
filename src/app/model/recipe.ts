@@ -7,7 +7,9 @@ export class Recipe {
   effort: Effort;
   diets: Diet[] = [];
   categories: string[] = [];
+  portions: number;
   steps: Step[] = [];
+  comments: string[] = [];
 }
 
 export class Effort {
@@ -24,16 +26,24 @@ export class Diet {
   }
 }
 
+export class Action {
+  constructor(public actionId: string, public title: string, public description: string) {
+  }
+}
+
 export class Step {
   public ingredients: Ingredient[] = [];
-
-  // public actions: Action[] = [];
+  public actions: Action[] = [];
 
   constructor(public id: string, public step: number) {
   }
 
   public addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
+  }
+
+  public addAction(action: Action) {
+    this.actions.push(action);
   }
 }
 

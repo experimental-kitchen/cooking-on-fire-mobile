@@ -37,6 +37,9 @@
     <ion-row>
       <ion-col><b>Zutaten</b></ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col>{{recipe.portions}} Portion(en)</ion-col>
+    </ion-row>
     <ion-row *ngFor="let step of recipe.steps">
       <ion-col>
         <ion-row *ngFor="let ingredient of step.ingredients">
@@ -52,6 +55,23 @@
     </ion-row>
     <ion-row>
       <ion-col><b>Zubereitung</b></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let step of recipe.steps">
+      <ion-col>
+        <ion-row *ngFor="let action of step.actions">
+          <ion-col class="flexbox">
+            <span class="ingredient-amount">{{action.title}}</span>
+            <span>{{action.description}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="recipe.comments?.length > 0">
+      <ion-col><b>Bemerkungen</b></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let comment of recipe.comments">
+      <ion-col>{{comment}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
