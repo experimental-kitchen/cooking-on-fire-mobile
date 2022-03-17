@@ -3,6 +3,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {EffortSpoonsComponent} from './effort-spoons.component';
 import {Effort, Recipe, Size} from '../../model/recipe';
+import {RecipeImageOrPlaceholderComponent} from '../recipe-image-or-placeholder/recipe-image-or-placeholder.component';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('EffortSpoonsComponent', () => {
@@ -14,7 +15,7 @@ describe('EffortSpoonsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [EffortSpoonsComponent],
+      declarations: [EffortSpoonsComponent, RecipeImageOrPlaceholderComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
