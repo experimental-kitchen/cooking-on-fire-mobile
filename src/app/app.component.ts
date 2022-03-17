@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuController} from '@ionic/angular';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonMenu, MenuController} from '@ionic/angular';
 import {Router, RoutesRecognized} from '@angular/router';
+import {AppTitleService} from './services/app-title/app-title.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,12 @@ import {Router, RoutesRecognized} from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
+  @ViewChild('mainMenu')
+  mainMenu: IonMenu;
+
   title: string;
 
-  constructor(private menu: MenuController, private router: Router) {
+  constructor(private menu: MenuController, private router: Router, private appTitleService: AppTitleService) {
   }
 
   openFirst() {
@@ -20,6 +24,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.appTitleService.subscribe((title: string) => {
+      this.title = title;
+    });
     this.setTitleFromRouterData();
   }
 

@@ -1,0 +1,41 @@
+app-recipe-categories, app-season, span, ion-col {
+  color: var(--ion-color-primary);
+}
+
+.flexbox {
+  display: flex;
+  gap: 10px;
+  color: var(--ion-color-primary);
+  margin-top: 6px;
+}
+
+.topic-desc {
+  padding: 10px 0;
+}
+
+.spoon-padding {
+  padding-top: 15px;
+}
+
+.diet {
+  width: 124px;
+  padding: 5px 0;
+  margin-right: 0px;
+  text-align: right;
+}
+
+.diet-icon {
+  font-size: 25px;
+}
+
+.ingredient-amount {
+  width: 124px;
+  color: var(--ion-color-primary);
+  text-align: right;
+  padding-right: 0;
+  flex: none;
+}
+
+.comment {
+  color: var(--ion-color-secondary-tint);
+}

@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  fhirBaseUrl: 'http://hapi.fhir.org/baseR4'
+  fhirBaseUrl: 'http://hapi.fhir.org/baseR4' //'http://192.168.1.52/fhir'
 };

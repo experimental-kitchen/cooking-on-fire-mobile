@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {PlanDefinition} from 'fhir/r4';
-import {TopicDecoderService} from '../topic-decoder/topic-decoder.service';
-import {CodeSystem} from '../topic-decoder/code-system';
+import {Recipe} from '../../model/recipe';
 
 @Injectable()
 export class SeasonService {
@@ -13,13 +11,12 @@ export class SeasonService {
     return this._currentDate;
   }
 
-  constructor(private topicDecoderService: TopicDecoderService) {
+  constructor() {
     this.seasonMapper = new SeasonMapper();
   }
 
-  isInSeason(planDefinition: PlanDefinition): boolean {
-    const seasonsOfRecipe = this.topicDecoderService.getCode(planDefinition, CodeSystem.cofSeason);
-    return seasonsOfRecipe.find(seasonOfRecipe =>
+  isInSeason(recipe: Recipe): boolean {
+    return recipe.seasons?.find(seasonOfRecipe =>
       this.seasonMapper.isDateInSeason(this.currentDate, Season[seasonOfRecipe])
     ) !== undefined;
   }

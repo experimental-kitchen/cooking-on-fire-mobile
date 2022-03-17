@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 
 import {SeasonService} from './season.service';
-import {PlanDefinition} from 'fhir/r4';
+import {Recipe} from '../../model/recipe';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('SeasonService', () => {
@@ -18,103 +18,73 @@ describe('SeasonService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('plandefinition is at the begin of spring', () => {
+  it('recipe is at the begin of spring', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 2, 1));
-    expect(service.isInSeason(planDefinitionSpring)).toBeTrue();
+    expect(service.isInSeason(recipeSpring)).toBeTrue();
   });
 
-  it('plandefinition is at the end of spring', () => {
+  it('recipe is at the end of spring', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 4, 31, 23, 59, 59, 999));
-    expect(service.isInSeason(planDefinitionSpring)).toBeTrue();
+    expect(service.isInSeason(recipeSpring)).toBeTrue();
   });
 
-  it('plandefinition is at the begin of summer', () => {
+  it('recipe is at the begin of summer', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 5, 1));
-    expect(service.isInSeason(planDefinitionSummer)).toBeTrue();
+    expect(service.isInSeason(recipeSummer)).toBeTrue();
   });
 
-  it('plandefinition is at the end of summer', () => {
+  it('recipe is at the end of summer', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 7, 31, 23, 59, 59, 999));
-    expect(service.isInSeason(planDefinitionSummer)).toBeTrue();
+    expect(service.isInSeason(recipeSummer)).toBeTrue();
   });
 
-  it('plandefinition is at the begin of autumn', () => {
+  it('recipe is at the begin of autumn', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 8, 1));
-    expect(service.isInSeason(planDefinitionAutumn)).toBeTrue();
+    expect(service.isInSeason(recipeAutumn)).toBeTrue();
   });
 
-  it('plandefinition is at the end of autumn', () => {
+  it('recipe is at the end of autumn', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 10, 30, 23, 59, 59, 999));
-    expect(service.isInSeason(planDefinitionAutumn)).toBeTrue();
+    expect(service.isInSeason(recipeAutumn)).toBeTrue();
   });
 
-  it('plandefinition is at the begin of winter', () => {
+  it('recipe is at the begin of winter', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 0, 1));
-    expect(service.isInSeason(planDefinitionWinter)).toBeTrue();
+    expect(service.isInSeason(recipeWinter)).toBeTrue();
   });
 
-  it('plandefinition is at the end of winter', () => {
+  it('recipe is at the end of winter', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 11, 31, 23, 59, 59, 999));
-    expect(service.isInSeason(planDefinitionWinter)).toBeTrue();
+    expect(service.isInSeason(recipeWinter)).toBeTrue();
   });
 
-  it('plandefinition is in all seasons', () => {
+  it('recipe is in all seasons', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2021, 11, 31, 23, 59, 59, 999));
-    expect(service.isInSeason(planDefinitionAllSeason)).toBeTrue();
+    expect(service.isInSeason(recipeAllSeason)).toBeTrue();
   });
 
-  it('plandefinition is in winter on last day of winter on a leap year ', () => {
+  it('recipe is in winter on last day of winter on a leap year ', () => {
     spyOnProperty(service, 'currentDate').and.returnValue(new Date(2024, 1, 29, 23, 59, 59, 999));
-    expect(service.isInSeason(planDefinitionWinter)).toBeTrue();
+    expect(service.isInSeason(recipeWinter)).toBeTrue();
   });
 });
 
-const planDefinitionWinter = createSpyObj<PlanDefinition>('planDefinition', {}, {
-  topic: [{
-    coding: [{
-      code: 'winter',
-      system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
-      display: 'Winter'
-    }]
-  }]
+const recipeWinter = createSpyObj<Recipe>('recipe', {}, {
+  seasons: ['winter']
 });
 
-const planDefinitionAutumn = createSpyObj<PlanDefinition>('planDefinition', {}, {
-  topic: [{
-    coding: [{
-      code: 'autumn',
-      system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
-      display: 'Herbst'
-    }]
-  }]
+const recipeAutumn = createSpyObj<Recipe>('recipe', {}, {
+  seasons: ['autumn']
 });
-const planDefinitionSummer = createSpyObj<PlanDefinition>('planDefinition', {}, {
-  topic: [{
-    coding: [{
-      code: 'summer',
-      system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
-      display: 'Sommer'
-    }]
-  }]
+const recipeSummer = createSpyObj<Recipe>('recipe', {}, {
+  seasons: ['summer']
 });
 
-const planDefinitionSpring = createSpyObj<PlanDefinition>('planDefinition', {}, {
-  topic: [{
-    coding: [{
-      code: 'spring',
-      system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
-      display: 'Frühling'
-    }]
-  }]
+const recipeSpring = createSpyObj<Recipe>('recipe', {}, {
+  seasons: ['spring']
 });
 
-const planDefinitionAllSeason = createSpyObj<PlanDefinition>('planDefinition', {}, {
-  topic: [{
-    coding: [{
-      code: 'all-season',
-      system: 'http://cooking-on-fire.ch/fhir/CodeSystem/cof-season',
-      display: 'Ganzjährig'
-    }]
-  }]
+const recipeAllSeason = createSpyObj<Recipe>('recipe', {}, {
+  seasons: ['all-season']
 });
 

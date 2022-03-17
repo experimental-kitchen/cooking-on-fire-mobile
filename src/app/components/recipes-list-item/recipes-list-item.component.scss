@@ -1,0 +1,20 @@
+ion-row {
+  color: var(--ion-color-primary);
+}
+
+.title {
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.categories {
+  font-size: small;
+  padding-left: 10px;
+}
+
+.season {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

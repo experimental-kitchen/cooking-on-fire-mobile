@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{recipe != undefined ? recipe.title : ''}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="recipe !== undefined">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-recipe-image-or-placeholder [recipe]="recipe"></app-recipe-image-or-placeholder>
+      </ion-col>
+      <ion-col>
+        <app-season [recipe]="recipe"></app-season>
+      </ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <b>{{recipe.categories|slashSeparatedListPipe}}</b>
+        <span *ngIf="recipe.subtitle">&nbsp;({{recipe.subtitle}})</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="flexbox">
+        <span class="diet"><app-effort-spoons [recipe]="recipe" style="float:right"></app-effort-spoons></span>
+        <span class="topic-desc spoon-padding">{{effortDescription(recipe)}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let diet of diets(recipe)">
+      <ion-col class="flexbox">
+        <span class="diet"><ion-icon src="assets/icons/{{diet.code | dietToSymbolImageFileName}}"
+                                     class="diet-icon"></ion-icon></span>
+        <span class="topic-desc">{{diet.displayText}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <ion-col><b>Zutaten</b></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>{{recipe.portions}} Portion(en)</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let step of recipe.steps">
+      <ion-col>
+        <ion-row *ngFor="let ingredient of step.ingredients">
+          <ion-col class="flexbox">
+            <span class="ingredient-amount">{{ingredient.amount}} {{ingredient?.unit?.abbreviation}}</span>
+            <span>{{ingredient.name}}
+              <ion-text class="comment"
+                        *ngIf="ingredient.comment !== undefined">{{ingredient.comment}}</ion-text></span>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><b>Zubereitung</b></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let step of recipe.steps">
+      <ion-col>
+        <ion-row *ngFor="let action of step.actions">
+          <ion-col class="flexbox">
+            <span class="ingredient-amount">{{action.title}}</span>
+            <span>{{action.description}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="recipe.comments?.length > 0">
+      <ion-col><b>Bemerkungen</b></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let comment of recipe.comments">
+      <ion-col>{{comment}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

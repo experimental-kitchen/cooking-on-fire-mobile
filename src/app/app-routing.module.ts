@@ -4,7 +4,7 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 export const routes: Routes = [
   {
     path: 'menu-plan',
-    loadChildren: () => import('./menu-plan/menu-plan.module').then(m => m.HomePageModule),
+    loadChildren: () => import('./pages/menu-plan/menu-plan.module').then(m => m.HomePageModule),
     data: {title: 'Menüplan'}
   },
   {
@@ -14,9 +14,14 @@ export const routes: Routes = [
   },
   {
     path: 'recipes',
-    loadChildren: () => import('./receipes/recipes.module').then(m => m.RecipesPageModule),
+    loadChildren: () => import('./pages/receipes/recipes.module').then(m => m.RecipesPageModule),
     data: {title: 'Rezepte'}
   },
+  {
+    path: 'recipe/:id',
+    loadChildren: () => import('./pages/recipe/recipe.module').then( m => m.RecipePageModule)
+  },
+
 ];
 
 @NgModule({
